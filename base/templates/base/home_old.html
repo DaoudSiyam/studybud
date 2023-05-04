@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<style>
+    .home-container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+
+<div class="home-container">
+
+    <div>
+        {% include 'base/topics_components.html' %}
+    </div>
+
+
+    <div>
+        <!--room_count will be defined in the views-->
+        <h5>{{room_count}} rooms available</h5>
+        <a href = "{% url 'create-room' %}">Create Room</a>
+
+        {% include 'base/feed_component.html' %}
+    </div>
+
+    <div class="">
+        {% include 'base/activity_component.html' %}
+    </div>
+    
+</div>
+
+<!--if you want to use multiple components-->
+<!--make sure they all link well to eachother-->
+<!--and all of them have access to eachother-->
+
+
+{% endblock content %}

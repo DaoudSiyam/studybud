@@ -1,0 +1,57 @@
+<!-- this serves the purpose to demonstarte -->
+<!-- how apis can be used in general -->
+<!-- this is a window just to serve the purpose if communicating with studybud api -->
+<!-- the 2 applications that i am trying to link do not know about eachother -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Rooms</title>
+</head>
+<body>
+    <h1>
+        Cools Rooms
+    </h1>
+
+    <div id="rooms-container">
+
+    </div>
+</body>
+
+<script>
+    let getRooms = async () => {
+        let roomsContainer = document.getElementById('rooms-container')
+
+        let response = await fetch('http://127.0.0.1:8000/api/rooms');
+        // we are using a fetch api
+        // in order to get the information we need from that website
+        // that we are trying to communicate with
+        let rooms =  await response.json()
+
+        // in an api if we send data we need to stringify it
+        // and if we want to get data we have to
+        // pasre it into json data
+
+        for(let i = 0; rooms.length > i; i++){
+            let room = rooms[i]
+            let row = `<div>                            
+                            <h3>${room.name}</h3>                
+                        </div>`
+            // those are called template literals
+            // they allow us to add things
+            roomsContainer.innerHTML += row
+        }
+    }
+
+    getRooms();
+    // in order to make this work
+    // we need to install the django-cors-headers
+    // because without it, the fetch api will be blocked from
+    // communication by django, so we need to install
+    // django-cors-headers so we can enable 
+    // both applications to communicate with eachother
+
+</script>
+</html>

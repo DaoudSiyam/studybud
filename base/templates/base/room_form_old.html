@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div>
+    <!--we want to be sending data so it's a post method-->
+    <!--if we dont specify the action we will be sending it-->
+    <!--to the current url that we are at-->
+    <!--so the action will determine what url we will be sending data to-->
+    <form method="POST" action="">
+        <!--the csrf token amkes sure the user-->
+        <!--does not send any malicious attempts to the database-->
+        {% csrf_token %}
+        <!--{{form}}-->
+        {{form.as_p}} <!--wraps every inpit field with a <p> tag-->
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock content  %}
